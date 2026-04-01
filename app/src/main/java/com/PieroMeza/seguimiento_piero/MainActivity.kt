@@ -11,37 +11,61 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "CicloVida"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
-
 
         Log.d(TAG, "onCreate()")
 
+        val btnSegunda = findViewById<Button>(R.id.btnSegunda)
+        val btnMonedas = findViewById<Button>(R.id.btnMonedas)
+        val btnDrawer = findViewById<Button>(R.id.btnDrawer)
 
-        val btn = findViewById<Button>(R.id.btnMostrar)
+        btnSegunda.setOnClickListener {
+            abrirConCarga("segunda")
+        }
 
+        btnMonedas.setOnClickListener {
+            abrirConCarga("monedas")
+        }
 
-        btn.setOnClickListener {
-
-            val intent = Intent(this, SegundaActividad::class.java)
-
-            startActivity(intent)
+        btnDrawer.setOnClickListener {
+            abrirConCarga("drawer")
         }
     }
 
+    private fun abrirConCarga(destino: String) {
+        val intent = Intent(this, CargaActivity::class.java)
+        intent.putExtra("destino", destino)
+        startActivity(intent)
+    }
 
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart()")
+    }
 
-    override fun onStart()   { super.onStart(); Log.d(TAG, "onStart()") }
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart()")
+    }
 
-    override fun onRestart(){ super.onRestart(); Log.d(TAG, "onRestart()") }
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume()")
+    }
 
-    override fun onResume() { super.onResume(); Log.d(TAG, "onResume()") }
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause()")
+    }
 
-    override fun onPause()  { super.onPause(); Log.d(TAG, "onPause()") }
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop()")
+    }
 
-    override fun onStop()   { super.onStop(); Log.d(TAG, "onStop()") }
-
-    override fun onDestroy(){ super.onDestroy(); Log.d(TAG, "onDestroy()") }
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy()")
+    }
 }
